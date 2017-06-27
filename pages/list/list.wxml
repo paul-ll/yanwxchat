@@ -1,0 +1,46 @@
+<scroll-view  style="height: {{windowHeight}}px; width: {{windowWidth}}px;" scroll-y="true" bindscrolltoupper="pullDownRefresh" bindscrolltolower="pullUpLoad" >
+<view class="order-item" wx:for="{{orders}}" wx:key="">
+	<view class="carts_head">
+		<view class="ord_num">
+			订单号：{{item.order_num}}
+		</view>
+		<view class="ord_desc">
+			{{item.status_desc}}
+		</view>
+	</view>	
+	<view class="carts-main">
+	<view class="carts-item" bindtap="showGoods" data-order_id="{{item.order_id}}" data-num="{{item.num}}">
+			
+		<view>
+			<!-- 缩略图 -->
+			<image class="carts-image" src="{{item.event_image}}" />
+		</view>
+		<view class="carts-text">
+			<!-- 商品标题 -->
+			<view class="carts-title">{{item.event_name}}</view>
+			<view class="carts-subtitle">
+				<!-- 活动时间 -->
+				<text class="carts-price">{{item.date}} {{item.start_time}}~{{item.end_time}}</text>
+				<!-- 活动地点 -->
+				<text class="carts-address">{{item.event_address}}</text>
+			</view>
+		</view>
+	</view>
+	<view class="order-footer">
+		
+		<text class="order_total">共{{item.num}}件商品</text>
+		<view class="order_total">实付金额<text class="order_mon"> {{item.disbursements}}</text></view>
+	</view>
+	
+
+	</view>
+
+	<view class="order-footer">
+		<text bindtap="receive" data-order_status="{{item.order_status}}" class="{{item.order_status != 1 ? 'hidden': ''}}">去支付</text>
+		<text bindtap="reshop" data-event_id="{{item.event_id}}" class="{{item.order_status != 9 ? 'hidden': ''}}">重新购买</text>
+		<text bindtap="receive" data-order_status="{{item.order_status}}" class="{{item.order_status != 7 ? 'hidden': ''}}">查看电子票</text>
+	</view>
+</view>
+<view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>  
+      <view class="complete" hidden="{{!searchLoadingComplete}}">已加载全部</view> 
+</scroll-view>

@@ -1,0 +1,121 @@
+<view class="container">
+    
+    <view class="grids">
+    
+        <view class="swiper-tab">
+
+		    <view class="swiper-tab-list {{selected?'on':'default'}}" data-id="event" data-current='{{selected}}' data-uid='{{uid}}' bindtap="selected">活动</view>
+		    <view class="swiper-tab-list {{selected1?'on':'default'}}" data-id="feed" data-current='{{selected1}}' data-uid='{{uid}}' bindtap="selected1">盐场</view>
+        </view>
+       
+
+       
+       	<view class="{{selected?'show':'hidden'}}">
+           <block wx:for="{{collection.collect}}" wx:for-item="dataItem" wx:for-index="dataIndex" wx:key="data">
+
+            <view class="swiper_item" data-event_id="{{dataItem.event_id}}" bindtap="enterEvent">
+           <view><image class="my_img" src="{{dataItem.image}}"></image></view>
+           <view class="item_right">
+                <view class="my_text">{{dataItem.name}}</view>
+                <view>
+                    <block wx:for="{{dataItem.tags}}" wx:for-item="tagItem" wx:for-index="dataIndex" wx:key="tag">
+                        <view class="my_tag" data-tag_id="{{tagItem.tag_id}}">
+                           <text> {{tagItem.name}}</text>
+                        </view>
+                    </block>
+                </view>
+                <view class="my_time">
+                <block wx:if="{{dataItem.ticket.end_ticket !=''}}">
+                ￥{{dataItem.ticket.start_ticket}}起
+                
+                </block>
+                <block wx:else>
+                ￥{{dataItem.ticket.current_price}}
+                </block>
+
+                </view>
+                <view class="my_date">{{dataItem.date_time}}</view>
+                <view class="my_address">{{dataItem.arena_location}}</view>
+           </view>
+        </view>
+            
+           </block>
+        
+        </view>
+
+          <!-- 我是呵呵 -->
+        <view class="{{selected1?'show':'hidden'}}">
+            <block wx:for="{{collection.collect}}" wx:for-item="feedItem" wx:for-index="feedIndex" wx:key="feedItemid">
+            <view class="feed_item">
+               <view class="feed_my_info">
+                    <view>
+                        <image class="feed_img" src="{{feedItem.avatarUrl}}" />
+                    </view>
+                    <view>
+                        <text class="feed_name">{{feedItem.uname}}</text>
+                        <text class="feed_time">{{feedItem.pub_time}}</text>
+                    </view>
+               </view>
+            
+               <view class="feed_show_img">
+                    <block wx:for="{{feedItem.feed_image}}" wx:for-item="imageItem" wx:for-index="imageIndex" wx:key="imageItemid">
+                        <image  class="feed_small_img" style="width:{{feedItem.feed_image.length==1? 250 : 125}}px;height:{{feedItem.feed_image.length==1? 250 : 125}}px" src="imageItem" />
+                    </block>
+               </view>
+               <view class="feed_foot">
+                    <view class="feed_collect feed_text"><text>{{feedItem.feed_title}}</text></view>
+                    <view class="feed_comment feed_text">{{feedItem.feed_content}}</view>
+                 
+               </view>
+
+               <view class="apply_event">
+               		<view class="event_name">
+               			相关活动
+               		</view>
+               		<view class="apply_right">
+               			<view><image class="apply_img" src="{{feedItem.event.event_image}}"></image></view>
+               			<view>
+               				<view class="apply_title">{{feedItem.event.event_name}}</view>
+               				<view class="apply_time">{{feedItem.event.date}}</view>
+               			</view>
+               		</view>
+
+               </view>
+            </view>
+           </block>
+        
+        </view>
+    </view>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

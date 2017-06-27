@@ -1,0 +1,240 @@
+<view class="container">
+    <block wx:if="{{showLoading}}">
+        <view class="loading">玩命加载中…</view>
+    </block>
+    <block wx:elif="{{showContent}}">
+    <!-- fd: film detail -->
+        <view class="fd-hd">
+            <view class="fd-hd-bg" style="background-image: url({{image}})"></view>
+            <image src="{{image}}" class="fd-cover"></image>
+            <view class="fd-intro">
+                <view class="fd-title">{{name}}</view>
+                 <view class="fd-time-data">
+                    {{time}}
+                 </view>
+                 <view class="fd-address-add">
+                    {{address}}
+                </view>
+            </view>
+
+            
+        </view>
+
+
+
+        <view class="add-price">
+            <block wx:for="{{tickets}}" wx:for-index="index" wx:key="ticket"> 
+                <view class="adult-price {{carts[index]?'':'hide'}}">
+                   {{item.type}}：￥{{item.current_price}} X {{carts[index]}}
+                </view>
+            </block>
+        
+        </view>
+
+        <view class="fd-">
+
+        </view>
+        <view class="fd-time">
+            <view class="time-list">
+                配送方式：
+            </view>
+
+
+
+             <!-- 电子+实体 -->
+            <block wx:if="{{ticket_arr.examine_ticket_type==3 }}">
+            <view class="time-list-tab">
+                <view class="time-list-nochange {{index==activeIndex?'time-list-change':''}}"  data-index="{{index}}" wx:for="{{ticket_type}}" wx:key="index" data-value="{{item}}"  bindtap="tabChange">
+                    {{item}}
+                </view>
+            </view>
+
+            <view class="time-list-elect">
+                <block wx:if="{{activeIndex==0 }}">
+                    <view class="delevey-mode">
+                        <view class="delevey-mode-1">
+                            <text>参加人</text>
+                            <input class="delevey-person"  type="text" placeholder="请输入参加人姓名" bindinput="userNameInput" />
+                        </view>
+                        <view class="delevey-mode-1">
+                            <text>联系方式</text>
+                            <input class="delevey-address"  type="number" placeholder="请输入参加人手机号"  bindinput="phoneNumInput"/>
+                        </view>
+                    </view>
+                     <view class="tishi">
+                       {{ticket_arr.examine_info_electronic}}
+                    </view>
+                </block>
+
+                <block wx:if="{{activeIndex==1}}">
+                    <view class="delevey-mode" >
+                    <block wx:if="{{empty_address}}">
+                        <view class="address_flex" bindtap="address_change">
+                       <view class="address_box">
+                         <view class="address_name">
+                            +新建地址
+                         </view>
+                       </view>
+                       <view class="address_right">></view>
+            
+                    </view> 
+                     <view class="tishi">
+                       {{ticket_arr.examine_info_entity}}
+                    </view>
+                     </block>
+                     <block wx:else>
+                    <view class="address_flex" bindtap="address_change">
+                       <view class="address_box">
+                         <view class="address_name">
+                             <view class="address_name_left">{{address_arr.name}}</view>
+                              <view class="address_name_right">{{address_arr.phone}}</view>
+                         </view>
+                          <view class="address_info">{{address_arr.province}} {{address_arr.city}}  {{address_arr.county}}  {{address_arr.address}}</view>
+                       </view>
+                       <view class="address_right">></view>
+                       </view>
+                         <view class="tishi">
+                       {{ticket_arr.examine_info_entity}}
+                    </view>
+                    </block>
+                    
+                    </view>
+                </block>
+               
+                 
+            </view>
+           </block>
+            <!-- 电子-->
+            <block wx:if="{{ticket_arr.examine_ticket_type==1 }}">
+            <view class="time-list-tab">
+                <view class="time-list-nochange time-list-change">
+                    {{ticket_type[0]}}
+                </view>
+            </view>
+            <view class="time-list-elect">
+                <view class="delevey-mode">
+                    <view class="delevey-mode-1">
+                        <text>参加人</text>
+                        <input class="delevey-person"  type="text" placeholder="请输入参加人姓名" bindinput="userNameInput" />
+                    </view>
+                    <view class="delevey-mode-1">
+                        <text>联系方式</text>
+                        <input class="delevey-address"  type="number" placeholder="请输入参加人手机号" bindinput="phoneNumInput" />
+                    </view>
+                </view>
+                <view class="tishi">
+                   {{ticket_arr.examine_info_electronic}}
+                </view>
+            </view>
+            </block>
+            <!-- 实体 -->
+            <block wx:if="{{ticket_arr.examine_ticket_type==2 }}">
+                 <view class="delevey-mode" >
+                    <block wx:if="{{empty_address}}">
+                    <view class="address_flex" bindtap="address_change">
+                       <view class="address_box">
+                         <view class="address_name">
+                            +新建地址
+                         </view>
+                       </view>
+                       <view class="address_right">></view>
+            
+                    </view> 
+                     <view class="tishi">
+                       {{ticket_arr.examine_info_entity}}
+                    </view>
+          
+                     </block>
+                     <block wx:else>
+                     <view class="address_flex" bindtap="address_change">
+                       <view class="address_box">
+                         <view class="address_name">
+                             <view class="address_name_left">{{address_arr.name}}</view>
+                              <view class="address_name_right">{{address_arr.phone}}</view>
+                         </view>
+                          <view class="address_info">{{address_arr.province}} {{address_arr.city}}  {{address_arr.county}}  {{address_arr.address}}</view>
+                       </view>
+                       <view class="address_right">></view>
+                       </view>
+                       <view class="tishi">
+                       {{ticket_arr.examine_info_entity}}
+                    </view>
+                    </block>
+                    
+                    </view>
+            </block>
+        </view>
+
+ <!--  <view class="time-list-nochange">
+                16:00~18:00
+            </view> 
+            <view class="time-list-nochange">
+                19:00~22:00
+            </view>  -->
+
+        <view class="favor">
+            <view class="favor-type">
+                <view>商品合计</view>
+                <view>￥{{total}}</view>
+            </view> 
+            <view class="favor-type">
+                <view>运费</view>
+                <block wx:if="{{postage==0}}">
+                <view>免运费</view>
+                </block>
+                <block wx:else>
+                <view>￥{{postage}}</view>
+                </block>
+            </view>
+        </view>
+
+         <view class="favor">
+            <view class="favor_name">
+                支付方式
+            </view> 
+            <view class="favor-type">
+                <view>微信</view>
+                <view><icon type="success_circle" size="20"/></view>
+                
+            </view>
+        </view>
+
+
+
+
+
+
+       
+        
+    </block> 
+</view>
+<import src="../../component/message/message.wxml"/>
+<template is="message" data="{{message: message}}"/>
+
+ <!--  <view class="footer"></view>
+<view class="carts-footer">
+    <view bindtap="bindSelectAll">
+        <icon wx:if="{{selectedAllStatus}}" type="success_circle" size="20"/>
+        <icon wx:else type="circle" size="20" />
+        <text>支付金额</text>
+        <text>￥: {{total}}</text>
+    </view>
+    <view class="button" bindtap="bindCheckout">提交订单</view>
+</view>   -->
+
+
+
+
+<view class="footer">
+    <view class="pay_mon">
+    共计<text>￥{{all_num}} ({{page}}张)</text></view>
+        <view class="button" data-image="{{image}}" data-name="{{name}}" data-start_date="{{start_date}}" data-tickets="{{tickets}}" data-carts="{{carts}}"
+        data-address="{{address}}" data-total="{{all_num}}" data-event_id="{{event_id}}"
+        data-page="{{page}}"
+        bindtap="bindCheckout">提交订单</view>
+</view>
+
+
+
+
+

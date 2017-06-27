@@ -1,0 +1,155 @@
+<view class="container">
+    <block wx:if="{{showLoading}}">
+        <view class="loading">玩命加载中…</view>
+    </block>
+    <block wx:elif="{{showContent}}">
+    <!-- fd: film detail -->
+        <view class="fd-hd">
+            <view class="fd-hd-bg" style="background-image: url({{image}})"></view>
+            <image src="{{image}}" class="fd-cover"></image>
+            <view class="fd-intro">
+                <view class="fd-title">{{name}}</view>
+                 <view class="fd-time-data">
+                    {{start_date}}
+                 </view>
+                 <view class="fd-address-add">
+                    {{address}}
+                </view>
+            </view>
+
+
+        </view>
+
+
+        <view class="fd-time">
+           <view class="time-list " bindtap="kindToggle">
+                选择日期：
+                <view class="show_box">{{selectedDate}} {{selectedWeek}}</view>
+           </view>  
+
+
+            <view class="kind-list__item-bd {{open ? 'kind-list__item-bd_show' : ''}}">
+                <view class="selected_date">
+                  <view bindtap="preMonth">
+                    <image class="select_icon" src="../../dist/images/left.png"></image>
+                  </view>
+                  <view class="text_center">{{curYear+'-'+curMonth}}</view>
+                  <view style="text-align:right;" bindtap="nextMonth">
+                    <image class="select_icon" src="../../dist/images/right.png"></image>
+                  </view>
+                </view>
+
+                <view class="calendar_panel">
+                    <view class="calendar_box">
+                        <view class="weekday_label">一</view>
+                        <view class="weekday_label">二</view>
+                        <view class="weekday_label">三</view>
+                        <view class="weekday_label">四</view>
+                        <view class="weekday_label">五</view>
+                        <view class="weekday_label">六</view>
+                        <view class="weekday_label">日</view>
+                    </view>
+                    
+                <view class="calendar_box" wx:for="{{dateList}}" wx:for-item="week" wx:for-index="index"  wx:key="weeked" style="{{index==0?'justify-content: flex-end;':''}}">
+                    <view class="weekday_label" wx:for="{{week}}" wx:for-index="index"  wx:key="weday">
+                        
+                        <text class="{{item.value==selectedDate?'active_date':''}} {{item.bg?'':'bg_color'}}" data-date="{{item}}" data-games_id="{{games_id}}" bindtap="selectDate" >{{item.date}}</text>
+
+                    </view>
+                  </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="fd-time">
+            <view class="time-list">
+                选择场次：
+            </view>
+                <block wx:for="{{time}}" wx:for-index="index" wx:key="timecate">
+                <view class="time-list-nochange {{index==activeIndex?'time-list-change':''}}"  data-index="{{index}}" bindtap="timeChange" data-games_id="{{item.games_id}}">
+                    {{item.start_time}}~{{item.end_time}}
+                </view>
+                </block>
+           
+
+        </view>
+
+        <view class="fd-type">
+            <view class="change-type">
+                选择票种：
+            </view> 
+        
+            <view class="solo-type"   wx:for="{{tickets}}" wx:for-index="index" wx:key="ticket"  >
+             <block  wx:if="{{item.total_num>item.sold_num}}">
+                <view class="solo-tick {{index==ticketIndex[index]?'ticketChange':''}}" data-games_id="{{item.games_id}}" 
+                data-ticket_id="{{item.ticket_id}}" data-index="{{index}}"  bindtap="ticketChange">
+
+                    <view class="solo-tick-price">{{item.type}}￥{{item.current_price}}</view>
+                    <view>{{item.desc}}</view>
+                </view>
+                <view>
+                    <view class="stepper">
+                        <!-- 减号 -->
+                        <view class="sit_up">
+                        <text class="{{minusStatuses}} {{carts[index]<1?'hide':'show'}} reduce" data-index="{{index}}" data-games_id="{{item.games_id}}" 
+                data-ticket_id="{{item.ticket_id}}" data-date="{{item}}" bindtap="bindMinus">-</text>
+                        </view>
+                        <!-- 数值 -->
+                        <text class="show_num"  data-index="{{index}}">{{carts[index]}}</text>
+                        <!-- 加号 -->
+                        <view class="sit_up">
+                        <text class="normal {{carts[index]>=item.limit_num?'hide':'show'}} reduce" data-date="{{item}}" data-limit_num="{{item.limit_num}}" data-games_id="{{item.games_id}}" 
+                data-ticket_id="{{item.ticket_id}}" data-index="{{index}}" bindtap="bindPlus">+</text>
+                        </view>
+                        <view class="limit_color {{carts[index]>=item.limit_num?'show':'hide'}}">限购{{item.limit_num}}张</view>
+
+                    </view>
+                </view> 
+            </block>
+            <block wx:else>
+                 <view class="solo-tick">
+
+                    <view class="solo-tick-price">票已售罄</view>
+                   
+                </view>
+            </block>
+
+            </view>
+
+
+
+        </view>
+
+
+
+
+
+
+       
+        
+    </block> 
+</view>
+<import src="../../component/message/message.wxml"/>
+<template is="message" data="{{message: message}}"/>
+
+
+
+<view class="footer">
+    <view class="pay_mon {{collect ? 'fd-favorite-active' : ''}}">
+    共计<text class="{{total > 0 ? 'color_red':''}}">￥{{total}} ({{page}}张)</text></view>
+
+    <block wx:if="{{page > 0}}">
+        <view class="button" data-image="{{image}}" data-name="{{name}}" data-start_date="{{start_date}}" data-tickets="{{tickets}}" data-carts="{{carts}}"
+        data-address="{{address}}" data-total="{{total}}" data-event_id="{{event_id}}"
+        data-page="{{page}}"
+        bindtap="bindCheckout">下一步</view>
+    </block>
+    <block wx:else>
+        <view class="button no_color">下一步</view>
+    </block>
+</view>
+
+
+
+
+

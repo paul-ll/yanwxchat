@@ -1,0 +1,93 @@
+<view class="tab-content-item">
+    <view class="favorite-film-item">
+     <view class="favorite-film-cover">
+        <image class="favorite-film-cover" src="{{getTicketDetail.event_image}}"></image>
+    </view>
+        <view class="favorite-film-info">
+            <view class="favorite-film-txt favorite-film-title">
+                {{getTicketDetail.event_name}}
+                <text>{{getTicketDetail.type}}</text>
+            </view>
+            <view class="favorite-film-txt">
+                {{getTicketDetail.date}}
+                <text>{{getTicketDetail.start_time}}~{{getTicketDetail.end_time}}</text>
+            </view>
+            <view class="favorite-film-txt">
+                {{getTicketDetail.event_address}}
+            </view>
+
+
+
+           <!--   <view class="favorite-film-txt">
+                <block wx:if="{{getTicketDetail.ticket_stat == 1}}">
+                    已验票
+                </block>
+                <block wx:if="{{getTicketDetail.ticket_stat == 2}}">
+                    未验票
+                </block>
+                <block wx:if="{{getTicketDetail.ticket_stat == 3}}">
+                    已过期
+                </block>
+                
+            </view> -->
+        </view>
+    </view>
+ </view>
+
+ <view class="ticket_check">
+ 	<view class="check_title">
+ 		扫码验票
+ 	</view>
+ 	<view class="check_text">
+ 		将验证码或二维码出示给验票人员
+ 	</view>
+ 	<view class="check_text">
+ 		验证码:
+ 		<text>{{getTicketDetail.ticket_num}}</text>
+ 	</view>
+ 	<view>
+ 		<image class="check_img" src="{{getTicketDetail.qrcode}}"></image>
+ 	</view>
+ </view>
+
+
+<view class="hold_event">
+ 	<view class="hold_name">
+ 		举办方名称
+ 		{{getTicketDetail.seller}}
+ 		<text>{{getTicketDetail.consulting_phone}}</text>
+ 	</view>
+
+ 	<view data-phone="{{getTicketDetail.consulting_phone}}" bindtap="call_phone">
+ 		<image class="hold_img" src="../../dist/images/电话@2x.png"></image>
+ 	</view>
+
+</view>
+
+<view class="event_pay">
+ 	<view class="pay_title">
+ 		实付金额
+ 	</view>
+
+ 	<view class="pay_num">
+ 		订单号:
+ 		
+ 		<text>{{getTicketDetail.order_num}}</text>
+ 	</view>
+
+ 	<view class="pay_mon">
+ 		实付金额:
+ 		
+ 		<text>{{getTicketDetail.disbursements}}</text>
+ 	</view>
+
+</view>
+
+
+<view class="examine_info_electronic">
+	验票须知
+	<text>{{getTicketDetail.examine_info_electronic}}</text>
+</view>
+
+
+

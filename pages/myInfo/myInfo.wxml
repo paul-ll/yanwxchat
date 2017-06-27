@@ -1,0 +1,124 @@
+<view class="container">
+<view bindtap="active_into">
+    <block wx:if="{{uid != ''}}">
+        <view class="user-info">
+            <view class="user_box">
+                <view class="user_text">
+                    <image src="{{myInfo_arr.avatar_url}}" class="user-avatar"></image>
+                    <view>
+                        <view class="user_name">{{myInfo_arr.uname}}</view>
+                        <view class="user_at">
+                            <view class="user_follower">粉丝{{myInfo_arr.followers}}</view>|
+                            <view class="user_follow">关注{{myInfo_arr.follows}}</view>
+                        </view>
+                    </view>
+                </view>
+                
+            </view>
+            <view class="user_right">></view>
+          <!--  <view class="user-skin" bindtap="viewSkin"></view> -->
+        </view>
+        <view class="my_info_active">
+        <view class="my_info_active_1">
+            {{myInfo_arr.activities}}
+            <text>活动</text>
+        </view>
+        <view class="my_info_active_2">
+            {{myInfo_arr.feeds}}
+            <text>盐场</text>
+        </view>
+    </view>
+    </block>
+    <block wx:else>
+         <view class="user-info">
+            <view class="user_box">
+                <view class="user_text">
+                    <image src="{{myInfo_arr.avatar_url}}" class="user-avatar"></image>
+                    <view>
+                        <view class="user_name login_no">未登录</view>
+                    </view>
+                </view>
+                
+            </view>
+            <view class="user_right">></view>
+          <!--  <view class="user-skin" bindtap="viewSkin"></view> -->
+        </view>
+        <view class="my_info_active">
+        <view class="my_info_active_1">
+            /
+            <text>活动</text>
+        </view>
+        <view class="my_info_active_2">
+            /
+            <text>盐场</text>
+        </view>
+    </view>
+    </block>
+    
+</view>
+
+    <view class="grids">
+        
+        <view class="my_info_trick my_info_flex" bindtap="ticketInto">
+            <view class="my_info_img">
+                <image src="../../dist/images/tickets@3x.png" />
+            </view>
+            <view class="my_info_name">
+                我的票夹
+            </view>
+            <block wx:if="{{myInfo_arr.tickets>0}}">
+                <view class="myInfo_arr_tick">
+                    <text>{{myInfo_arr.tickets}}张票即将使用</text>>
+                </view>
+            </block>
+        </view>
+        <view class="my_info_paid my_info_flex" bindtap="listInto">
+            <view class="my_info_img">
+                <image src="../../dist/images/order@3x.png" />
+            </view>
+            <view class="my_info_name">
+                我的订单
+            </view>
+            <block wx:if="{{myInfo_arr.unpaids>0}}">
+                <view class="myInfo_arr_apily">
+                   <text>{{myInfo_arr.unpaids}}个订单待支付 </text>>
+                </view>
+            </block>
+        </view>
+
+        <view class="my_info_collect my_info_flex" bindtap="collectionInto">
+            <view class="my_info_img">
+                <image src="../../dist/images/save@3x.png" />
+            </view>
+            <view class="my_info_name">
+                我的收藏
+            </view>
+        </view>
+        <view class="my_info_applyAddress my_info_flex" bindtap="addressInto">
+            <view class="my_info_img">
+                <image src="../../dist/images/business@3x.png" />
+            </view>
+            <view class="my_info_name">
+                收货地址
+            </view>
+        </view>
+       <!--  <view class="my_info_coupon my_info_flex">
+            <view class="my_info_img">
+                <image src="../../dist/images/coupons@3x.png" />
+            </view>
+            <view class="my_info_name">
+                我的优惠券
+            </view>
+        </view> -->
+       <!-- <view class="my_info_yanshang my_info_flex">
+            <view class="my_info_img">
+                <image src="../../dist/images/business@3x.png" />
+            </view>
+            <view class="my_info_name">
+                成为盐商
+            </view>
+        </view> -->
+       
+       
+    </view>
+</view>

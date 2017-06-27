@@ -1,0 +1,47 @@
+<view class="container">
+ <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex;  position:fixed;top:0;left:0;z-index:9999;background:#f7f7f7;padding-right:10rpx;" >
+    <view class="bannerlist">
+        <block wx:for="{{tablist}}" wx:for-item="listItem" wx:for-index="bannerIndex" wx:key="list"> 
+            <view class="bannerli {{cid == listItem.cid?'bottom_li':''}}" data-cid="{{listItem.cid}}" bindtap="chickli">
+            {{listItem.name}}
+            </view>
+        </block>
+    </view>
+ </scroll-view> 
+
+ 
+</view>
+
+<scroll-view  style="height: {{windowHeight}}px; width: {{windowWidth}}px;padding-top:80rpx;background: rgba(238,238,238,0.80);" scroll-y="true" bindscrolltoupper="pullDownRefresh" bindscrolltolower="pullUpLoad">
+    <block wx:for="{{eventList}}" wx:for-item="dataItem" wx:for-index="dataIndex" wx:key="data">
+        <view class="swiper_item" data-event_id="{{dataItem.event_id}}" bindtap="enterEvent">
+           <view><image class="my_img" src="{{dataItem.image}}"></image></view>
+           <view class="item_right">
+                <view class="my_text">{{dataItem.name}}</view>
+                <view>
+                    <block wx:for="{{dataItem.tags}}" wx:for-item="tagItem" wx:for-index="dataIndex" wx:key="tag">
+                        <view class="my_tag" data-tag_id="{{tagItem.tag_id}}">
+                           <text> {{tagItem.name}}</text>
+                        </view>
+                    </block>
+                </view>
+                <view class="my_time">
+                <block wx:if="{{dataItem.ticket.end_ticket !=''}}">
+                ￥{{dataItem.ticket.start_ticket}}起
+                
+                </block>
+                <block wx:else>
+                ￥{{dataItem.ticket.current_price}}
+                </block>
+
+                </view>
+                <view class="my_date">{{dataItem.date_time}}</view>
+                <view class="my_address">{{dataItem.arena_location}}</view>
+           </view>
+        </view>
+       </block>
+
+
+<view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>  
+<view class="complete" hidden="{{!searchLoadingComplete}}">已加载全部</view> 
+</scroll-view>

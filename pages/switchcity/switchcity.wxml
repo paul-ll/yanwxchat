@@ -1,0 +1,23 @@
+<view class="searchLetter touchClass">
+  
+ 
+</view>
+<block wx:if="{{isShowLetter}}">
+  <view class="showSlectedLetter">
+    {{showLetter}}
+  </view>
+</block>
+
+  <view class="hotcity-common thisCity">当前选择城市</view>
+  <view class="thisCityName">{{city}}</view>
+  <view>
+    <text class="hotcity hotcity-common">热门城市</text>
+    <view class="weui-grids">
+      <block wx:for-items="{{hotcityList}}" wx:key="{{index}}">
+        <view class="weui-grid" data-area_id="{{item.area_id}}" data-city_code="{{item.city_code}}" data-city="{{item.name}}" bindtap="bindHotCity" >
+          <view class="weui-grid__label">{{item.name}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+ 

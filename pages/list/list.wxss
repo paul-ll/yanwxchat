@@ -1,0 +1,157 @@
+page {
+	background: #eee;
+}
+
+.order-item {
+	margin-bottom: 10px;
+	background: #fff;
+}
+
+.order-item:last-child {
+	margin-bottom: 0;
+}
+
+.order-footer {
+	padding: 3px 0;
+	text-align:right;
+}
+
+.order-footer text {
+	font-size: 12px;
+	margin: 0 5px;
+}
+
+/*每行单元格*/
+.carts-main {
+border-bottom: 1px solid #eee;
+	padding-left:10rpx;
+	padding-right:10rpx;
+}
+.carts-item {
+	display: flex;
+	flex-direction: row;
+	height:160rpx;
+	/*width属性解决标题文字太短而缩略图偏移*/
+	width:100%;
+	
+	padding: 30rpx 0;
+
+}
+
+/*左部图片*/
+.carts-image {
+	width:120rpx;
+	height:160rpx;
+	overflow:hidden;
+}
+
+
+/*右部描述*/
+.carts-text {
+	position:relative;
+	padding-left: 10rpx;
+	width: 100%;
+	background: rgba(238,238,238,0.80);
+	
+}
+
+/*右上部分标题*/
+.carts-title {
+width:95%;
+	font-size: 28rpx;
+	color: #000;
+	line-height: 38rpx;
+	font-weight:600;
+	overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+margin-top:10rpx;
+}
+
+/*右下部分价格与数量*/
+.carts-subtitle {
+	font-size: 25rpx;
+	color:darkgray;
+	margin-top:7px;
+}
+
+/*价格*/
+.carts-price {
+
+	font-size:14px;
+	line-height: 22px;
+	display:block;
+color: #888888;
+
+}
+.carts-address{
+width:95%;
+position:absolute;
+bottom:10rpx;
+left:10rpx;
+font-size:14px;
+	line-height: 22px;
+	display:block;
+color: #888888;
+overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+}
+/*隐藏元素*/
+.hidden {
+	display: none;
+}
+
+.carts_head{	
+width:100%;
+	display:flex;
+	justify-content:space-between;
+	height:20px;
+	padding-top:10px;
+}
+.ord_num{
+	font-size: 25rpx;
+	line-height: 12px;
+	margin-left:16px;
+}
+.ord_desc{
+	font-size: 25rpx;
+	color: #FF5454;
+	line-height: 12px;
+	margin-right:16px;
+}
+.order_total{
+	font-family: PingFangSC-Regular;
+font-size: 12px;
+color: #000000;
+line-height: 14px;
+display:inline-block;
+}
+.order_mon{
+	font-family: PingFangSC-Medium;
+	font-size: 14px;
+	color: #FF5454;
+	line-height: 14px;
+}
+
+.loading{  
+  padding: 10rpx;  
+  text-align: center;  
+}  
+.loading:before{  
+  display: inline-block;  
+  margin-right: 5rpx;  
+  vertical-align: middle;  
+  content: '';  
+  width: 40rpx;  
+  height: 40rpx;  
+
+  animation: rotate 1s linear infinite;  
+}  
+.loading.complete:before{  
+  display: none;  
+}  
+.complete{
+	margin:0 auto;
+	text-align:center;
+}

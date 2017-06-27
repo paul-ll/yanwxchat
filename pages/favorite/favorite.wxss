@@ -1,0 +1,104 @@
+@import '../../comm/style/tab.wxss';
+@import '../../component/nullTip/nullTip.wxss';
+
+.favorite-film-item {
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10rpx;
+}
+
+.favorite-film-cover {
+    width: 144rpx;
+    height: 192rpx;
+}
+
+.favorite-film-info {
+    width: 90%;
+    padding: 0 10rpx;
+}
+
+.favorite-film-txt {
+    margin-bottom: 20rpx;
+    color: #666;
+    margin-top:10rpx;
+}
+
+.favorite-film-title {
+width: 95%;
+    font-family: PingFangSC-Regular;
+    font-size: 32rpx;
+    color: #000000;
+    line-height: 32rpx;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+
+.favorite-person-item {
+    box-sizing: border-box;
+    padding: 40rpx;
+    margin-bottom: 60rpx;
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: 20rpx;
+    box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, .1);
+}
+
+.favorite-person-intro {
+    display: flex;
+    justify-content: space-between;
+}
+
+.favorite-person-info {
+    width: 320rpx;
+}
+
+.favorite-person-time {
+    margin-bottom: 20rpx;
+    font-size: 36rpx;
+    text-align: center;
+    color: #ccc;
+}
+
+.favorite-person-cover {
+    width: 260rpx;
+    height: 260rpx;
+    margin-bottom: 30rpx;
+    border-radius: 260rpx;
+    box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, .1);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.favorite-person-txt {
+    margin-bottom: 10rpx;
+    color: #999;
+}
+
+.favorite-person-name {
+    font-size: 40rpx;
+    color: #666;
+}
+.loading{  
+  padding: 10rpx;  
+  text-align: center;  
+}  
+.loading:before{  
+  display: inline-block;  
+  margin-right: 5rpx;  
+  vertical-align: middle;  
+  content: '';  
+  width: 40rpx;  
+  height: 40rpx;  
+
+  animation: rotate 1s linear infinite;  
+}  
+.loading.complete:before{  
+  display: none;  
+}  
+.complete{
+  margin:0 auto;
+  text-align:center;
+}

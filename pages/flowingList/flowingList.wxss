@@ -1,0 +1,47 @@
+.user_flex{
+    display:flex;
+    height:56px;
+    margin:8px 0;
+}
+.user_img{
+    width:40px;
+    height:40px;
+border-radius: 50%;
+margin-right:10px;
+}
+.user_name{
+    display:flex;
+}
+.user_text{
+    font-family: PingFangSC-Regular;
+font-size: 14px;
+line-height:20px;
+height:20px;
+color: #000000;
+font-weight:700;
+margin-right:5px;
+}
+.user_info{
+    width:100%;
+    border-bottom: 1rpx solid #E5E5E5;
+}
+.user_icon{
+    width:18px;
+    height:18px;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px 0 #CFAF7B;
+}
+.user_intro{
+    font-family: PingFangSC-Regular;
+font-size: 12px;
+margin-top:5px;
+color: #999999;
+line-height:16px;
+}
+.hidden{
+    display:none;
+}
+.complete{
+    text-align:center;
+    margin-top:10rpx;
+}

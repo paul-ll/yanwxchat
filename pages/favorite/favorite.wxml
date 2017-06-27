@@ -1,0 +1,97 @@
+<scroll-view  style="height: {{windowHeight}}px; width: {{windowWidth}}px;" scroll-y="true" bindscrolltoupper="pullDownRefresh" bindscrolltolower="pullUpLoad" >
+<import src="../../component/nullTip/nullTip.wxml"/>
+<view class="tab-header">
+    <view class="tab-header-item {{show == 'film_favorite' ? 'tab-header-active' : ''}}" data-type="film_favorite" bindtap="changeViewType">待参加</view>
+    <view class="tab-header-item {{show == 'person_favorite' ? 'tab-header-active' : ''}}" data-type="person_favorite" bindtap="changeViewType">已结束</view>
+</view>
+<view class="tab-content">
+    <view class="tab-content-item" hidden="{{show == 'film_favorite' ? false : true}}">
+        <block wx:if="{{film_favorite.length == 0}}">
+            <template is="nullTip" data="{{nullTip: nullTip}}"/>
+        </block>
+        <block wx:else>
+            <block wx:for="{{film_favorite}}" wx:for-item="filmFavoriteItem" wx:for-index="filmFavoriteIndex" wx:key="filmFavorite">
+                <view class="favorite-film-item" data-ticket_id="{{filmFavoriteItem.ticket_id}}" bindtap="viewgetTicketDetail">
+                    <view class="favorite-film-cover">
+                    <image class="favorite-film-cover" src="{{filmFavoriteItem.event_image}}"></image>
+                    </view>
+                    <view class="favorite-film-info">
+                        <view class="favorite-film-txt favorite-film-title">
+                            {{filmFavoriteItem.event_name}}
+                          
+                        </view>
+
+                        <view class="favorite-film-txt">
+                            {{filmFavoriteItem.date}}
+                            <text>{{filmFavoriteItem.start_time}}~{{filmFavoriteItem.end_time}}</text>
+                        </view>
+                        <view class="favorite-film-txt">
+                            {{filmFavoriteItem.event_address}}
+                        </view>
+
+                       <!--  <view class="favorite-film-txt">
+                            <block wx:if="{{filmFavoriteItem.ticket_stat == 1}}">
+                                已验票
+                            </block>
+                            <block wx:if="{{filmFavoriteItem.ticket_stat == 2}}">
+                                未验票
+                            </block>
+                            <block wx:if="{{filmFavoriteItem.ticket_stat == 3}}">
+                                已过期
+                            </block>
+                            
+                        </view> -->
+                      
+                    </view>
+                </view>
+            </block>
+        </block>
+    </view>
+
+
+    <view class="tab-content-item" hidden="{{show == 'person_favorite' ? false : true}}">
+        <block wx:if="{{person_favorite.length == 0}}">
+            <template is="nullTip" data="{{nullTip: nullTip}}"/>
+        </block>
+        <block wx:else>
+            <block wx:for="{{person_favorite.ticket}}" wx:for-item="personFavoriteItem" wx:for-index="personFavoriteIndex" wx:key="personFavorite">
+                <view class="favorite-film-item" data-ticket_id="{{personFavoriteItem.ticket_id}}" bindtap="viewgetTicketDetail">
+                    <image class="favorite-film-cover" src="{{personFavoriteItem.event_image}}"></image>
+                    <view class="favorite-film-info">
+                        <view class="favorite-film-txt favorite-film-title">
+                            {{personFavoriteItem.event_name}}
+                            <text>{{personFavoriteItem.type}}</text>
+                        </view>
+
+                        <view class="favorite-film-txt">
+                            {{personFavoriteItem.date}}
+                            <text>{{personFavoriteItem.start_time}}~{{personFavoriteItem.end_time}}</text>
+                        </view>
+                        <view class="favorite-film-txt">
+                           
+                                {{personFavoriteItem.event_address}}
+                              
+                        </view>
+
+
+                     <!-- <view class="favorite-film-txt">
+                            <block wx:if="{{personFavoriteItem.ticket_stat == 1}}">
+                                已验票
+                            </block>
+                            <block wx:if="{{personFavoriteItem.ticket_stat == 2}}">
+                                未验票
+                            </block>
+                            <block wx:if="{{personFavoriteItem.ticket_stat == 3}}">
+                                已过期
+                            </block>
+                        </view> -->
+                      
+                    </view>
+                </view>
+            </block>
+        </block>
+    </view>
+</view>
+<view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>  
+<view class="complete" hidden="{{!searchLoadingComplete}}">已加载全部</view> 
+</scroll-view>

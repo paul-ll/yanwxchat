@@ -1,0 +1,14 @@
+
+<scroll-view scroll-x="true" class="xscroll_bar">
+  <view class="menu_item {{index==activeIndex?'active':''}}" style="width:{{itemWidth}};" wx:for="{{menus}}"  bindtap="tabChange" data-index="{{index}}">
+    <view class="{{!(index==0 || index-1==activeIndex || index==activeIndex)?'menu_item_border':''}}">
+      {{item}}
+    </view>
+  </view>
+</scroll-view>
+
+<view class="menu_content">选中菜单{{activeIndex+1}}</view>
+<import src="../../component/filmList/filmList.wxml"/>
+<template is="filmList" data="{{films: films, hasMore: hasMore, showLoading: showLoading}}"/>
+<import src="../../component/message/message.wxml"/>
+<template is="message" data="{{message: message}}"/>

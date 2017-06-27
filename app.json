@@ -1,0 +1,70 @@
+{
+  "pages": [
+    "pages/popular/popular",
+    "pages/collection/collection",
+    "pages/flowerList/flowerList",
+    "pages/search/search",
+    "pages/flowingList/flowingList",
+    "pages/top/top",
+    "pages/filmDetail/filmDetail",
+    "pages/eventAll/eventAll",
+    "pages/searchResult/searchResult",
+    "pages/my/my",
+    "pages/favorite/favorite",
+    "pages/history/history",
+    "pages/shake/shake",
+    "pages/gallery/gallery",
+    "pages/setting/setting",
+    "pages/skin/skin",
+    "pages/eventInfo/eventInfo",
+    "pages/editPersonInfo/editPersonInfo",
+    "pages/getTicketDetail/getTicketDetail",
+    "pages/about/about",
+    "pages/switchcity/switchcity",
+    "pages/location/location",
+    "pages/address/address",
+    "pages/add_address/add_address",
+    "pages/checkout/checkout",
+    "pages/payment/payment",
+    "pages/list/list",
+    "pages/cart/cart",
+    "pages/detail/detail",
+    "pages/goods/goods",
+    "pages/login/login",
+    "pages/shop/shop",
+    "pages/myInfo/myInfo",
+    "pages/address_init/address_init",
+    "pages/order/order"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#47a86c",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText":  "有盐ifeng",
+    "backgroundColor": "#fff",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#686868",
+    "selectedColor": "#47a86c",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [{
+      "pagePath": "pages/popular/popular",
+      "iconPath": "dist/images/popular_icon.png",
+      "selectedIconPath": "dist/images/popular_active_icon.png",
+      "text": "主页"
+    },
+    {
+      "pagePath": "pages/myInfo/myInfo",
+      "iconPath": "dist/images/my_icon.png",
+      "selectedIconPath": "dist/images/my_active_icon.png",
+      "text": "我的"
+    }]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

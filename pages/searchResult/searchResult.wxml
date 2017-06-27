@@ -1,0 +1,56 @@
+<import src="../../component/nullTip/nullTip.wxml"/>
+
+
+
+<view class="container">
+    <view class="search-area">
+		<form bindsubmit="research">
+		    <input class="search-txt" type="text" name="keyword" placeholder="输入关键字搜索"/>
+		    <button class="search-btn" formType="submit">搜索</button>
+		</form>
+	</view>
+    <view class="grids">
+    
+        <view class="swiper-tab">
+
+		    <view class="swiper-tab-list {{selected?'on':'default'}}" data-id="event" data-current='{{selected}}' data-uid='{{uid}}' bindtap="selected">活动</view>
+		    <view class="swiper-tab-list {{selected1?'on':'default'}}" data-id="user" data-current='{{selected1}}' data-uid='{{uid}}' bindtap="selected1">用户</view>
+        </view>
+       
+
+       
+       	<view class="{{selected?'show':'hidden'}}">
+           <block wx:for="{{event}}" wx:for-index="dataIndex" wx:key="event">
+            <view class="swiper_item" data-event_id="{{item.event_id}}" bindtap="event_info">
+               <view><image class="my_img" src="{{item.image}}"></image></view>
+               <view class="item_right">
+                    <view class="my_text">{{item.name}}</view>
+                    <view class="my_time">￥{{item.ticket.start_ticket}}起</view>
+                    <view class="my_date">{{item.date_time}}</view>
+                    <view class="my_address">{{item.arena_location}}</view>
+               </view>
+            </view>
+           </block>
+        
+        </view>
+
+          <!-- 我是用户 -->
+        <view class="{{selected1?'show':'hidden'}}">
+            <block wx:for="{{user}}" wx:for-item="userItem" wx:for-index="feedIndex" wx:key="feed">
+              <view class="user_flex" data-uid="{{userItem.uid}}" bindtap="user_info">
+                <image class="user_img" src="{{userItem.avatar}}" ></image>
+                <view class="user_info">
+                    <view class="user_name">
+                      <text class="user_text">{{userItem.uname}}</text>
+         
+                    </view>
+                    <view class="user_intro">{{userItem.intro}}</view>
+                </view>
+              </view>
+           </block>
+        
+        </view>
+    </view>
+</view>
+
+

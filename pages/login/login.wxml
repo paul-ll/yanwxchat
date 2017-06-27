@@ -1,0 +1,68 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <!--login.wxml-->  
+<view class="swiper-tab">  
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">登录</view>  
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">注册</view>  
+    
+</view>  
+  
+<swiper current="{{currentTab}}" class="swiper-box" style="height:{{winHeight - 31}}px"duration="300" bindchange="bindChange">  
+    <!-- 登录 -->  
+    <swiper-item>  
+    <view>
+    <form bindsubmit="formSubmit">
+      <view class="row">
+        <input type="number" name="userName" placeholder="手机号码" />
+      </view>
+      <view class="row row_flex">
+        <input type="password" name="userPassword" placeholder="密码包含6~10位字符" />
+        <text class="miss_word">忘记密码? ></text>
+      </view>
+      <view class="row">
+        <button type="primary" form-type="submit">登陆</button>
+      </view>
+    </form>
+    
+      </view>  
+    </swiper-item> 
+
+    <!-- 注册 -->  
+    <swiper-item>  
+      <view>
+        <form bindsubmit="sendSubmit">
+          <view class="row">
+            <input type="number" name="phone" placeholder="手机号码" bindinput="inputPhone" />
+          </view>
+          <view class="row row_flex">
+            <input type="text" name="Password" placeholder="密码包含6~10位字符" />
+            <image class="look_word" src="../../../dist/images/no_look.png"></image>
+          </view>
+          <view class="row row_flex">
+            <input type="text" name="reg_code" placeholder="验证码" />
+            <text class="{{selected?'miss_word':'hidden'}}" >{{second}}s后重新获取</text>
+            <text class="{{selected1?'miss_word':'hidden'}}" bindtap="sendSmsCode">获取验证码</text>
+          </view>
+          <view class="row">
+            <button type="primary" form-type="submit">注册</button>
+          </view>
+        </form>
+      </view>  
+    </swiper-item>  
+   
+</swiper>  
+  <view class="fixed_wx" bindtap="loginByThird">
+    <text class="wx_text">微信登录</text>
+    <image class="wx_img" src="../../dist/images/w_img.png"></image>
+  </view>
+</view>
+
+
+
+
+
+
+
+
+
+

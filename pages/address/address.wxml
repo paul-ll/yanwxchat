@@ -1,0 +1,34 @@
+<view class="address-list">
+	<view class="item" wx:for="{{address_arr}}" wx:key="">
+		<!-- first row -->
+		<view class="header">
+			<text class="realname">{{item.name}}</text>
+			<text class="mobile">{{item.phone}}</text>
+		</view>
+		<!-- second row -->
+		<view class="summary">
+			<block wx:if="{{item.province == item.city}}">
+				{{item.city}} {{item.county}} {{item.address}}
+			</block>
+			<block wx:else>
+				{{item.province}} {{item.city}} {{item.county}} {{item.address}}
+			</block>
+			
+		</view>
+		<!-- third row -->
+		<view class="footer">
+			<!-- is default switch -->
+			<view class="set-default" data-index="{{index}}" data-id="{{item.id}}" bindtap="setDefault">
+				<!-- circle or success type -->
+				<icon type="{{item.is_default == 1 ? 'success_circle' : 'circle'}}"/>
+				<text>默认地址</text>
+			</view>
+			<!-- edit and delete button -->
+			<view class="operation">
+				<view class="container" data-index="{{index}}" data-id="{{item.id}}" bindtap="edit"><image src="../../dist/images/地址管理-编辑@3x.png" /><text>编辑</text></view>
+				<view class="container" data-index="{{index}}" data-id="{{item.id}}" bindtap="delete"><image src="../../dist/images/地址管理-删除@3x.png" /><text>删除</text></view>
+			</view>
+		</view>
+	</view>
+</view>
+<button bindtap="add" type="primary" class="address-add">添加</button>

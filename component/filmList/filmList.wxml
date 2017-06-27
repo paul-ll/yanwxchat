@@ -1,0 +1,69 @@
+<template name="filmList">
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>
+<block wx:else>
+    <view class="film">
+        <block wx:for="{{films.event}}" wx:for-index="filmIndex" wx:for-item="filmItem" wx:key="film">
+            <view data-id="{{films.area_id}}" class="film-item" catchtap="viewFilmDetail">
+                <view class="film-cover">
+                    <image src="{{films.event.image}}" class="film-cover-img"></image>
+                    <view class="film-rating">
+                        <block wx:if="{{filmItem.fav_num == 0}}">
+                            暂无评分
+                        </block>
+                        <block wx:else>
+                            {{filmItem.fav_num}}分
+                        </block>
+                    </view>
+                </view>
+                <view class="file-main">
+                    <view class="file-intro">
+                        <view class="file-start">
+                            售票中：
+                        </view>
+                        <view class="film-title">
+                            {{films.name}}
+                        </view>
+                       
+                    </view>
+
+
+                    <block wx:if="{{filmItem.price_high}}">
+                        <view class="file-pice">
+                            ￥：{{films.price_high}}
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <view class="no-price">
+                            暂无价格
+                        </view> 
+                    </block>
+                    
+
+                    <view class="file-time">
+                        {{films.event.start_date}}~{{films.event.end_date}} {{films.event.end_time}}
+                    </view>
+
+                    <view class="file-address">
+                        {{films.arena_address}}
+                    </view> 
+
+                     <view class="film-tag">
+                            <view class="film-tag-item" wx:for="{{filmItem.genres}}" wx:for-item="filmTagItem" wx:key="filmTag" data-tag="{{filmTagItem}}" catchtap="viewFilmByTag">
+                                {{filmTagItem}}
+                            </view>
+                        </view>
+                    
+                </view>
+            </view>
+        </block>
+        <block wx:if="{{hasMore}}">
+            <view class="loading-tip">拼命加载中…</view>
+        </block>
+        <block wx:else>
+            <view class="loading-tip">没有更多内容了</view>
+        </block>
+    </view>
+</block>
+</template>

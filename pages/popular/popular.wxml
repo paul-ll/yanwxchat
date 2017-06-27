@@ -1,0 +1,99 @@
+<scroll-view  style="height: {{windowHeight}}px; width: {{windowWidth}}px;" scroll-y="true" bindscrolltoupper="pullDownRefresh" bindscrolltolower="pullUpLoad" >
+<view class="all_page">
+<block wx:if="{{! showLoading}}">
+<view class="headerPop">
+	<view class="changeCity" bindtap="selectRankType" data-value="{{city}}">
+    <view class="select_city">{{city}}</view>
+    <image class="select_img" src="../../dist/images/select.png"></image>
+
+	</view>
+	<view class="search-bar">
+	    <text class="search-txt" data-hot_search_key="{{bannerList.hot_search_key}}" bindtap="viewSearch" >{{bannerList.hot_search_key[0]}}</text>
+	</view>
+</view>
+<swiper class="banner" indicator-dots="true" autoplay="true">
+    <block wx:for="{{bannerList.slide}}" wx:for-item="bannerItem" wx:for-index="bannerIndex" wx:key="banner">
+        <swiper-item data-type="{{bannerItem.type}}" data-action_id="{{bannerItem.action_id}}" bindtap="viewBannerDetail">
+            <image src="{{bannerItem.image}}" class="banner-item"></image>
+        </swiper-item>
+    </block>
+</swiper>
+
+<!-- <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex" > -->
+  <view class="banner_list">
+    <block wx:for="{{bannerList.cate}}" wx:for-item="cateItem" wx:key="cate">
+      <view class="banner_li" data-cid="{{cateItem.cid}}" data-list="{{bannerList.cate}}" data-area_id="{{area_id}}" bindtap="eventAll">
+        <image class="banner_img" src="{{cateItem.icon}}"></image>
+        <view class="banner_name">{{cateItem.name}}</view>
+      </view>
+    </block>
+  </view>
+ <!-- </scroll-view> -->
+
+<!-- 活动详情 -->
+<view class="event_info">
+  <view class="event_title">有盐精选</view>
+  <view class="event_text">实时实地推荐最适合你的活动</view> 
+<block wx:for="{{eventList}}" wx:for-item="eventItem" wx:key="event" wx:for-index="index">
+  <view class="event_main" data-event_id="{{eventItem.event_id}}" bindtap="viewEnentInfo">
+    <image class="event_img" src="{{eventItem.image}}"></image>
+    <view class="event_body">
+      <view class="event_left">
+        <view class="event_name">{{eventItem.name}}</view>
+        
+          <block wx:for="{{eventItem.tags}}" wx:for-item="tagItem" wx:key="tag">
+          <view class="tag_text" data-tag_id="{{tagItem.tag_id}}">
+            {{tagItem.name}}
+         </view>
+          </block>
+      </view>
+      <view class="event_right">
+        <block wx:if="{{eventItem.ticket.current_price > 0}}">
+            <block wx:if="{{eventItem.ticket.end_ticket !=''}}">
+            ￥{{eventItem.ticket.start_ticket}}起
+            
+            </block>
+            <block wx:else>
+            ￥{{eventItem.ticket.current_price}}
+            </block>
+          </block>
+        <block wx:else>
+            免费
+        </block>
+
+      <!--  <view class="event_price">{{eventItem.ticket.current_price}}</view>
+        <view class="event_ticket">{{eventItem.ticket.end_ticket}}</view> -->
+      </view>
+    </view>
+
+     <view class="event_time">{{eventItem.date_time}}</view>
+     <view class="event_last">
+      <view class="event_address">{{eventItem.arena_location}}</view>
+      <view class="event_long">{{distance[index]}}km</view>
+      </view>
+
+
+
+<scroll-view scroll-x="true" style=" white-space: nowrap; display: flex" >
+  
+<block wx:for="{{eventItem.thumbs}}" wx:for-item="thumbItem"  data-index="{{index}}" wx:key="thumb">
+  <view class="thumb_box">
+    <image class="thumb_img" src="{{thumbItem}}"></image>
+  </view>
+</block>
+ 
+</scroll-view>
+
+
+   
+  </view>
+ </block>
+</view>
+
+
+</block>
+</view>
+<view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>  
+<view class="complete" hidden="{{!searchLoadingComplete}}">已加载全部</view> 
+</scroll-view>
+
